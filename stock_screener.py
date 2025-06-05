@@ -83,12 +83,13 @@ def get_ticker_news_sentiment(ticker):
       title = dic['content']['title']
       summary = dic['content']['summary']
       text = title+' '+ summary
-      label = pipe(text)[0]['label']
+    #  label = pipe(text)[0]['label']
       response = chain.run(text=text)
 
       results.append({'YF Article':f'{text}',
                          'LLM generation':f'{response}',
-                         'LLM sentiment':label})
+                         #'LLM sentiment':label
+                     })
     df = pd.DataFrame(results)
     return df
   
