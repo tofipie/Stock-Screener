@@ -58,7 +58,7 @@ stock = st.selectbox("Select Stock from hot stocks", hot_stocks)
 st.sidebar.title("App Description")
 with st.sidebar:
     st.button('New Chat', on_click=reset_conversation)
-    st.write("Files loaded in VectorDB:")
+    st.write("Hot Stocks from finviz:")
     for stock in hot_stocks:
         st.markdown("- " + stock)
     st.write('Made by Noa Cohen')
