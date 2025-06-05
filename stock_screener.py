@@ -94,7 +94,7 @@ results = st.write(get_ticker_news_sentiment(stock))
 # With a streamlit expander
 with st.expander("Articles"):
   for i, doc in enumerate(results):
-     st.write(f"Article # {i+1} : {doc['text'].split('/')[-1]}")
+     st.write(i+1 : doc['text'].split('/')[-1])
      st.write(doc['response'])
      st.write("--------------------------------")
 # Create an input box to take the user''s input question
@@ -106,8 +106,10 @@ if prompt:
 # With a streamlit expander
   with st.expander("Articles"):
     for i, doc in enumerate(results):
-      st.write(Article # {i+1} : doc['text'].split('/')[-1])
+      st.write(i+1 : doc['text'].split('/')[-1])
       st.write(doc['response'])
+      st.write("--------------------------------")
+
       
 
               
