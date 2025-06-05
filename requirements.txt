@@ -3,3 +3,4 @@ langchain_groq
 transformers
 yfinance
 langchain
+pytorch
