@@ -10,6 +10,7 @@ import yfinance as yf #download news on market data from the Yahoo! Finance
 from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+from utils import reset_conversation
 
 GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
