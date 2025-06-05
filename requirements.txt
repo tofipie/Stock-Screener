@@ -1,0 +1,2 @@
+finvizfinance
+langchain_groq
