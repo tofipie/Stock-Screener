@@ -4,4 +4,4 @@ transformers
 yfinance
 langchain
 PyTorch 
-tensorflow 
+tensorflow==2.0
