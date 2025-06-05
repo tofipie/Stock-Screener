@@ -90,8 +90,8 @@ def get_ticker_news_sentiment(ticker):
                          'LLM generation':f'{response}',
                          #'LLM sentiment':label
                      })
-    #df = pd.DataFrame(results)
-    return results
+    df = pd.DataFrame(results)
+    return df
   
   
 #print(get_ticker_news_sentiment(stock))  
