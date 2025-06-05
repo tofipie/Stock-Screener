@@ -90,8 +90,8 @@ def get_ticker_news_sentiment(ticker):
                          'LLM generation':f'{response}',
                          #'LLM sentiment':label
                      })
- #   df = pd.DataFrame(results)
-    return results
+    df = pd.DataFrame(results)
+    return df
   
   
 st.write(get_ticker_news_sentiment(stock))  
@@ -99,12 +99,12 @@ st.write(get_ticker_news_sentiment(stock))
 prompt = st.chat_input("Enter Ticker...")
 
 if prompt:
-    results = get_ticker_news_sentiment(prompt)
+  st.write(get_ticker_news_sentiment(prompt))
 
     # With a streamlit expander
-    with st.expander("Articles"):
+  #  with st.expander("Articles"):
         # Find the relevant chunks
-        for i, doc in enumerate(results):
-            st.write(f"Article # {i+1} : {results['text'].split('/')[-1]}")
-            st.write(results['response'])
-            st.write("--------------------------------")
+   #     for i, doc in enumerate(results):
+    #        st.write(f"Article # {i+1} : {results['text'].split('/')[-1]}")
+     #       st.write(results['response'])
+      #      st.write("--------------------------------")
