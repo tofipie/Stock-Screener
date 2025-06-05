@@ -1,5 +1,7 @@
 finvizfinance
 langchain_groq
+tensorflow
+torch
 transformers
 yfinance
 langchain
