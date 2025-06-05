@@ -94,7 +94,7 @@ def get_ticker_news_sentiment(ticker):
     return df
   
   
-#print(get_ticker_news_sentiment(stock))  
+st.write(get_ticker_news_sentiment(stock))  
 # Create an input box to take the user''s input question
 prompt = st.chat_input("Enter Ticker...")
 
