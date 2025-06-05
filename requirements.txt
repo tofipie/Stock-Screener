@@ -1,3 +1,4 @@
 finvizfinance
 langchain_groq
 transformers
+yfinance
