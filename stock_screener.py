@@ -1,6 +1,8 @@
 import pandas as pd
 import csv
 import os
+import streamlit as st
+
 from finvizfinance.screener.overview import Overview
 from transformers import pipeline
 import yfinance as yf #download news on market data from the Yahoo! Finance
@@ -9,10 +11,7 @@ from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
-# Load environment variables
-load_dotenv()
-# Get an environment variable
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
 
