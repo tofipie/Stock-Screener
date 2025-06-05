@@ -54,7 +54,7 @@ def get_undervalued_stocks():
 hot_stocks = get_undervalued_stocks()
 st.title("Stock Screener Using LLM 💬")
 selected_custom_name = st.sidebar.selectbox('Ticker List', ['', *hot_stocks])
-llm_model = st.selectbox("Select LLM", ["Anthropic Claude V2", "Amazon Titan Text Express v1", "Ai21 Labs Jurassic-2 Ultra"])
+stock = st.selectbox("Select Stock", hot_stocks)
 st.sidebar.title("App Description")
 with st.sidebar:
     st.button('New Chat', on_click=reset_conversation)
