@@ -4,7 +4,7 @@ import os
 import streamlit as st
 
 from finvizfinance.screener.overview import Overview
-#from transformers import pipeline
+from transformers import pipeline
 import yfinance as yf #download news on market data from the Yahoo! Finance
 
 from langchain_groq import ChatGroq
