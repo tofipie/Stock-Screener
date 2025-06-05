@@ -4,7 +4,7 @@ import os
 import streamlit as st
 
 from finvizfinance.screener.overview import Overview
-from transformers import pipeline
+#from transformers import pipeline
 import yfinance as yf #download news on market data from the Yahoo! Finance
 
 from langchain_groq import ChatGroq
@@ -51,7 +51,16 @@ def get_undervalued_stocks():
     return tickers
 
 hot_stocks = get_undervalued_stocks()
-
+st.title("Stock Screener Using LLM 💬")
+selected_custom_name = st.sidebar.selectbox('Ticker List', ['', *hot_stocks])
+llm_model = st.selectbox("Select LLM", ["Anthropic Claude V2", "Amazon Titan Text Express v1", "Ai21 Labs Jurassic-2 Ultra"])
+st.sidebar.title("App Description")
+with st.sidebar:
+    st.button('New Chat', on_click=reset_conversation)
+    st.write("Files loaded in VectorDB:")
+    for stock in hot_stocks:
+        st.markdown("- " + stock)
+    st.write('Made by Noa Cohen')
 pipe = pipeline("text-classification", model="ProsusAI/finbert")
 
 def get_ticker_news_sentiment(ticker):
@@ -82,25 +91,10 @@ def get_ticker_news_sentiment(ticker):
     df = pd.DataFrame(results)
     return df
   
-selected_custom_name = st.sidebar.selectbox('Ticker List', ['', *hot_stocks])
   
-user_input = st.text_area("Enter Ticker")
-button = st.button("Generate Response")
-if user_input and button:
-    summary = get_ticker_news_sentiment(user_input)
-    st.write("Summary : ", summary)
   
-# Main Streamlit app
-def main():
-    st.title("Stock Screener Using LLM")
-    with st.sidebar:
-        st.title('💬 Hot Stocks App')
-        st.markdown('''
-        ## About
-        Enter Ticker to get results
-        ''')
-        st.write('Made by Noa Cohen')
-       
+# Create an input box to take the user''s input question
+prompt = st.chat_input("Enter Ticker...")
 
-if __name__ == "__main__":
-    main()
+if prompt:
+    get_ticker_news_sentiment(prompt)
