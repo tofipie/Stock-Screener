@@ -90,11 +90,11 @@ def get_ticker_news_sentiment(ticker):
                          'LLM generation':f'{response}',
                          #'LLM sentiment':label
                      })
-    df = pd.DataFrame(results)
-    return df
+    #df = pd.DataFrame(results)
+    return results
   
   
-print(get_ticker_news_sentiment(stock))  
+#print(get_ticker_news_sentiment(stock))  
 # Create an input box to take the user''s input question
 prompt = st.chat_input("Enter Ticker...")
 
