@@ -4,7 +4,7 @@ import os
 import streamlit as st
 
 from finvizfinance.screener.overview import Overview
-from transformers import pipeline
+#from transformers import pipeline
 import yfinance as yf #download news on market data from the Yahoo! Finance
 
 from langchain_groq import ChatGroq
@@ -62,7 +62,7 @@ with st.sidebar:
     for stock in hot_stocks:
         st.markdown("- " + stock)
     st.write('Made by Noa Cohen')
-pipe = pipeline("text-classification", model="ProsusAI/finbert")
+#pipe = pipeline("text-classification", model="ProsusAI/finbert")
 
 def get_ticker_news_sentiment(ticker):
     """
