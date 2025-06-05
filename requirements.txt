@@ -1,2 +1,3 @@
 finvizfinance
 langchain_groq
+transformers
