@@ -99,4 +99,4 @@ def get_ticker_news_sentiment(ticker):
 prompt = st.chat_input("Enter Ticker...")
 
 if prompt:
-    st.write(get_ticker_news_sentiment(prompt)
+    st.write(get_ticker_news_sentiment(prompt))
