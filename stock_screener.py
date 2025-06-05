@@ -78,33 +78,43 @@ def get_ticker_news_sentiment(ticker):
     ticker_news = yf.Ticker(ticker)
     news_list = ticker_news.get_news()
     #extractor = Goose()
-    results=[]
+    results={}
     for dic in news_list:
       title = dic['content']['title']
       summary = dic['content']['summary']
       text = title+' '+ summary
     #  label = pipe(text)[0]['label']
       response = chain.run(text=text)
+      
+      results[text] = response
 
-      results.append({'YF Article':f'{text}',
-                         'LLM generation':f'{response}',
-                         #'LLM sentiment':label
-                     })
-    df = pd.DataFrame(results)
-    return df
+
+     # results.append({'YF Article':f'{text}',
+      #                   'LLM generation':f'{response}',
+       #                  #'LLM sentiment':label
+        #             })
+   # df = pd.DataFrame(results)
+    return results
   
   
-st.write(get_ticker_news_sentiment(stock))  
+results = st.write(get_ticker_news_sentiment(stock))  
+# With a streamlit expander
+with st.expander("Articles"):
+  for i, doc in enumerate(results):
+     st.write(f"Article # {i+1} : {doc['text'].split('/')[-1]}")
+     st.write(doc['response'])
+     st.write("--------------------------------")
 # Create an input box to take the user''s input question
 prompt = st.chat_input("Enter Ticker...")
 
 if prompt:
-  st.write(get_ticker_news_sentiment(prompt))
+  results = get_ticker_news_sentiment(prompt)
 
-    # With a streamlit expander
-  #  with st.expander("Articles"):
-        # Find the relevant chunks
-   #     for i, doc in enumerate(results):
-    #        st.write(f"Article # {i+1} : {results['text'].split('/')[-1]}")
-     #       st.write(results['response'])
-      #      st.write("--------------------------------")
+# With a streamlit expander
+  with st.expander("Articles"):
+    for i, doc in enumerate(results):
+      st.write(f"Article # {i+1} : {doc['text'].split('/')[-1]}")
+      st.write(doc['response'])
+      st.write("--------------------------------")
+
+              
