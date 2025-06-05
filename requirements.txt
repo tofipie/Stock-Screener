@@ -4,4 +4,4 @@ transformers
 yfinance
 langchain
 PyTorch 
-TensorFlow 
+tensorflow 
