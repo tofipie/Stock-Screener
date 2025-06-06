@@ -90,7 +90,7 @@ def get_ticker_news_sentiment(ticker):
     return results
   
   
-results = st.write(get_ticker_news_sentiment(stock))  
+results = get_ticker_news_sentiment(stock)  
 # With a streamlit expander
 with st.expander("Articles"):
   if results: #in case there are no articles
