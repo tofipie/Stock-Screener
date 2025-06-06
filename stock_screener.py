@@ -93,10 +93,10 @@ def get_ticker_news_sentiment(ticker):
 results = st.write(get_ticker_news_sentiment(stock))  
 # With a streamlit expander
 with st.expander("Articles"):
-  for i, doc in enumerate(results):
-     st.write(f" Article # {i+1} : doc['text'].split('/')[-1]")
-     st.write(doc['response'])
-     st.write("--------------------------------")
+  if len(results)>0:
+    for i, doc in enumerate(results):
+      st.write(f" Article # {i+1} : doc['text'].split('/')[-1]")
+      st.write(doc['response'])
 # Create an input box to take the user''s input question
 prompt = st.chat_input("Enter Ticker...")
 
@@ -105,10 +105,11 @@ if prompt:
 
 # With a streamlit expander
   with st.expander("Articles"):
-    for i, doc in enumerate(results):
-      st.write(f" Article # {i+1} : doc['text'].split('/')[-1]")
-      st.write(doc['response'])
-      st.write("--------------------------------")
+    if len(results)>0:
+      for i, doc in enumerate(results):
+        st.write(f" Article # {i+1} : doc['text'].split('/')[-1]")
+        st.write(doc['response'])
+      #st.write("--------------------------------")
 
       
 
