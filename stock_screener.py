@@ -92,11 +92,11 @@ def get_ticker_news_sentiment(ticker):
   
 results = get_ticker_news_sentiment(stock)  
 # With a streamlit expander
-with st.expander("Articles"):
-  if results: #in case there are no articles
-    for k, v in results.items():
-      st.write(k)
-      st.write(v)
+#with st.expander("Articles"):
+if results: #in case there are no articles
+  for k, v in results.items():
+    st.write(k)
+    st.write(v)
     
    
 # Create an input box to take the user''s input question
@@ -106,11 +106,11 @@ if prompt:
   results = get_ticker_news_sentiment(prompt)
 
 # With a streamlit expander
-  with st.expander("Articles"):
-    if results:
-      for k, v in results.items():
-        st.write(k)
-        st.write(v)
+#  with st.expander("Articles"):
+  if results:
+    for k, v in results.items():
+      st.write(k)
+      st.write(v)
 
       
 
