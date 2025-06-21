@@ -16,6 +16,7 @@ GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 
 llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
 
+#Sentiment chain
 template = """
 You are a finance assistant that can analyse text and decide if according the text it is worth to purchase the stock or not.
 Provide a short answer if it is worth to purchase the stock or not or it is not clear from the text.
@@ -26,6 +27,21 @@ Text: {text}
 # Set up the prompt and LLM chain
 prompt = PromptTemplate(template=template, input_variables=["text"])
 chain = LLMChain(prompt=prompt, llm=llm)
+
+
+trans_template = """
+Translate the text into Hebrew language. Do not add your comments regarding the translation.
+
+Text: {text}
+
+Translation:
+
+"""
+
+# Translation chain
+trans_prompt = PromptTemplate(template=trans_template, input_variables=["text"])
+trans_chain = LLMChain(prompt=trans_prompt, llm=llm)
+
 
 filters_dict = {'Debt/Equity':'Under 1', 
                     'PEG':'Low (<1)', 
@@ -83,10 +99,12 @@ def get_ticker_news_sentiment(ticker):
       title = dic['content']['title']
       summary = dic['content']['summary']
       text = title+' '+ summary
-    #  label = pipe(text)[0]['label']
-      response = chain.run(text=text)
-      
-      results[text] = response
+      label = pipe(text)[0]['label']
+      response = chain.invoke(text)['text']
+      trans_text = trans_chain.invoke(text)['text']
+
+      results[trans_text] = [response,label]
+
     return results
   
   
