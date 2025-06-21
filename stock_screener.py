@@ -99,11 +99,11 @@ def get_ticker_news_sentiment(ticker):
       title = dic['content']['title']
       summary = dic['content']['summary']
       text = title+' '+ summary
-      label = pipe(text)[0]['label']
+    #  label = pipe(text)[0]['label']
       response = chain.invoke(text)['text']
       trans_text = trans_chain.invoke(text)['text']
 
-      results[trans_text] = [response,label]
+      results[trans_text] = [response]
 
     return results
   
